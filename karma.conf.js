@@ -20,11 +20,16 @@ module.exports = function (config) {
     mime: {
       'text/x-typescript': ['ts'],
     },
-    reporters: ['spec', 'coverage-istanbul'],
+    client: {
+      clearContext: false,
+    },
+    logLevel: config.LOG_DEBUG,
+    reporters: ['progress', 'kjhtml', 'coverage-istanbul'],
     coverageIstanbulReporter: {
       reports: ['html', 'text-summary', 'lcovonly'],
       dir: path.join(__dirname, 'coverage'),
       fixWebpackSourcePaths: true,
+      skipFilesWithNoCoverage: false,
       'report-config': {
         html: {
           outdir: 'html'
