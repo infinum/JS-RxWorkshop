@@ -24,7 +24,7 @@ Homework tasks are placed in `src/lecture-#/homework`. Each task has `.ts` and `
 - Types of `Observables`
     - Hot/Cold
     - Different `Subject`s
-- Comparison to `Promise`s
+- Comparison to `Promise`s and `MobX`
 
 ### 1.2. Homework
 
@@ -46,7 +46,7 @@ Go over most important operators by type and show some use-cases. Explain some t
 - Conditional
     - `every`, `iif`
 - Creation
-    - `new Observable`, `Observable.create`, `empty`, `from`, `fromEvent`, `throwError`, `of`, `interval`, `timer`
+    - `new Observable`, `Observable.create`, `empty`, `from`, `fromEvent`, `throwError`, `of`, `interval`, `timer`, `range`
 - Error handling
     - `catchError`, `retry`, `retryWhen`
 - Multicasting
