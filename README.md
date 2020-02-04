@@ -76,7 +76,9 @@ Take into consideration:
 
 ## 3. Lecture - Use cases examples
 
-TBD...
+- Handling WebSockets
+- API Response handling
+- Throttling events like window resize
 
 ## 4. Lecture - Angular-specific use cases
 
