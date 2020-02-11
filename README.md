@@ -53,7 +53,7 @@ Go over most important operators by type and show some use-cases. Explain some t
 - Filtering
     - `auditTime`, `debounceTime`, `throttleTime`, `filter`, `find`, `take`, `takeUntil`, `takeWhile`, `first`, `skip`, `distinct`, `distinctUntilChanged`
 - Transformation
-    - `map`, `mergeMat / flatMap`, `switchMap`, `reduce`
+    - `map`, `mergeMap / flatMap`, `switchMap`, `reduce`
 - Utility
     - `tap`, `delay`, `finalize`
 
