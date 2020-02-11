@@ -2,10 +2,10 @@
 
 The workshop consists of 4 lectures:
 
-- [1. Lecture - The Basics](#1.-lecture---the-basics)
-- [2. Lecture - Operators](#2.-lecture---operators)
-- [3. Lecture - Use cases examples](#3.-lecture---use-cases-examples)
-- [4. Lecture - Angular-specific use cases](#4.-lecture---angular-specific-use-cases)
+- [1. Lecture - The Basics](#1-lecture---the-basics)
+- [2. Lecture - Operators](#2-lecture---operators)
+- [3. Lecture - Use cases examples](#3-lecture---use-cases-examples)
+- [4. Lecture - Angular-specific use cases](#4-lecture---angular-specific-use-cases)
 
 Each lecture has a presentation and some lectures have homework tasks.
 
