@@ -73,7 +73,7 @@ Take into consideration:
 - the order in which responses come back
 - cancelling unnecessary requests (or not make them at all)
 
-## 3. Lecture - Use cases examples
+## 3. Lecture - Use cases
 
 ### 3.1. General
 
