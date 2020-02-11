@@ -4,8 +4,7 @@ The workshop consists of 4 lectures:
 
 - [1. Lecture - The Basics](#1-lecture---the-basics)
 - [2. Lecture - Operators](#2-lecture---operators)
-- [3. Lecture - Use cases examples](#3-lecture---use-cases-examples)
-- [4. Lecture - Angular-specific use cases](#4-lecture---angular-specific-use-cases)
+- [3. Lecture - Use cases](#3-lecture---use-cases)
 
 Each lecture has a presentation and some lectures have homework tasks.
 
@@ -46,15 +45,15 @@ Go over most important operators by type and show some use-cases. Explain some t
 - Conditional
     - `every`, `iif`
 - Creation
-    - `new Observable`, `Observable.create`, `empty`, `from`, `fromEvent`, `throwError`, `of`, `interval`, `timer`, `range`
+    - `new Observable`, `empty`, `from`, `fromEvent`, `throwError`, `of`, `interval`, `timer`, `range`
 - Error handling
     - `catchError`, `retry`, `retryWhen`
 - Multicasting
-    - `share`, `shareReplay`
+    - `multicast`, `share`, `shareReplay`
 - Filtering
-    - `auditTime`, `debounceTime`, `throttleTime`, `filter`, `find`, `first`, `skip`, `distinct`, `distinctUntilChanged`, `distinctUntilKeyChanged`
+    - `auditTime`, `debounceTime`, `throttleTime`, `filter`, `find`, `take`, `takeUntil`, `takeWhile`, `first`, `skip`, `distinct`, `distinctUntilChanged`
 - Transformation
-    - `map`, `mergeMat / flatMap`, `switchMap`, `scan`, `reduce`
+    - `map`, `mergeMat / flatMap`, `switchMap`, `reduce`
 - Utility
     - `tap`, `delay`, `finalize`
 
@@ -76,14 +75,15 @@ Take into consideration:
 
 ## 3. Lecture - Use cases examples
 
+### 3.1. General
+
 - Handling WebSockets
-- API Response handling
+- API calls with retry and backoff
 - Throttling events like window resize
 
-## 4. Lecture - Angular-specific use cases
+### 3.2. Angular-specific
 
 - Change Detection & `async` pipe
 - Subscriptions and memory leaks
 - Common pipelines examples
     - input$ -> debounceTime -> distinctUntilChanged -> http.get
-- TBD...
