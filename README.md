@@ -29,10 +29,10 @@ Homework tasks are placed in `src/lecture-#/homework`. Each task has `.ts` and `
 
 _Note:_ For these homework tasks, do not use `fromEvent()`, `from()`, `timer()` or `interval()` functions from `RxJS`.
 
-### Task #1 - Wrap `setTimeout` into `Observable`
-### Task #2 - Wrap `setInterval` into `Observable`
-### Task #3 - Wrap `XHR` or abortable `fetch` into `Observable`
-### Task #4 - Wrap button clicks into `Observable`
+#### Task #1 - Wrap `setTimeout` into `Observable`
+#### Task #2 - Wrap `setInterval` into `Observable`
+#### Task #3 - Wrap `XHR` or abortable `fetch` into `Observable`
+#### Task #4 - Wrap button clicks into `Observable`
 
 ## 2. Lecture - Operators
 
