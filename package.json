@@ -14,6 +14,7 @@
   "devDependencies": {
     "@types/jasmine": "~3.5.0",
     "html-webpack-plugin": "~3.2.0",
+    "husky": "~4.2.3",
     "istanbul-instrumenter-loader": "~3.0.1",
     "jasmine-core": "~3.5.0",
     "karma": "~4.4.1",
@@ -25,6 +26,8 @@
     "karma-jasmine-html-reporter": "~1.5.1",
     "karma-spec-reporter": "0.0.32",
     "karma-webpack": "~4.0.2",
+    "lint-staged": "~10.0.7",
+    "prettier": "1.19.1",
     "ts-loader": "~6.2.1",
     "typescript": "~3.7.3",
     "webpack": "~4.41.2",
@@ -33,5 +36,13 @@
   },
   "dependencies": {
     "rxjs": "~6.5.4"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,css,md}": "prettier --write"
   }
 }
