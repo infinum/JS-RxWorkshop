@@ -7,8 +7,8 @@ export function interval(intervalMs: number): Observable<number> {
       subscriber.next(counter++);
     }, intervalMs);
 
-    return () => {
+    return (): void => {
       window.clearInterval(intervalHandle);
-    }
-  })
+    };
+  });
 }

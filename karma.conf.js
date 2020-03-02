@@ -1,7 +1,10 @@
+/* eslint-disable */
+// @ts-check
+
 const webpackConfig = require('./webpack.config');
 const path = require('path');
 
-module.exports = function (config) {
+module.exports = function(config) {
   config.set({
     basePath: '',
     frameworks: ['jasmine'],
@@ -10,7 +13,7 @@ module.exports = function (config) {
     webpack: webpackConfig,
     port: 9876,
     colors: true,
-    logLevel: config.LOG_INFO,
+    logLevel: config.DEBUG,
     autoWatch: true,
     singleRun: false,
     concurrency: Infinity,
@@ -23,7 +26,6 @@ module.exports = function (config) {
     client: {
       clearContext: false,
     },
-    logLevel: config.LOG_DEBUG,
     reporters: ['progress', 'kjhtml', 'coverage-istanbul'],
     coverageIstanbulReporter: {
       reports: ['html', 'text-summary', 'lcovonly'],
@@ -32,9 +34,9 @@ module.exports = function (config) {
       skipFilesWithNoCoverage: false,
       'report-config': {
         html: {
-          outdir: 'html'
-        }
-      }
-    }
+          outdir: 'html',
+        },
+      },
+    },
   });
 };

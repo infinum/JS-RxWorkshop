@@ -8,14 +8,13 @@ export interface IPerson {
 }
 
 export class Person {
-  constructor(
-      public name: string,
-      public birthYear: string,
-  ) {}
+  constructor(public name: string, public birthYear: string) {}
 }
 
 export function fetchPerson(id: number): Observable<Person> {
-  return ajax.getJSON<IPerson>(`https://swapi.co/api/people/${id}/`).pipe(map((person) => {
-    return new Person(person.name, person.birth_year);
-  }));
+  return ajax.getJSON<IPerson>(`https://swapi.co/api/people/${id}/`).pipe(
+    map((person) => {
+      return new Person(person.name, person.birth_year);
+    }),
+  );
 }
