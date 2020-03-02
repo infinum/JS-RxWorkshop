@@ -1,7 +1,7 @@
 import 'jasmine-ajax';
 import { xhr } from './xhr';
 
-fdescribe('Lecture 1 - XHR', () => {
+describe('Lecture 1 - XHR', () => {
   beforeEach(() => {
     jasmine.Ajax.install();
 
