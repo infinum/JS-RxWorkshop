@@ -7,13 +7,20 @@
     "start": "webpack-dev-server --open",
     "build": "webpack --config webpack.config.js --mode production",
     "watch": "webpack --watch",
-    "test": "karma start"
+    "test": "karma start",
+    "lint": "npm run tscheck && npm run eslint",
+    "tscheck": "tsc --noEmit --skipLibCheck -p .",
+    "eslint": "eslint ."
   },
   "author": "Infinum JS Team",
   "license": "MIT",
   "devDependencies": {
     "@types/jasmine": "~3.5.0",
     "@types/jasmine-ajax": "~3.3.0",
+    "@typescript-eslint/eslint-plugin": "~2.21.0",
+    "@typescript-eslint/parser": "~2.21.0",
+    "eslint": "~6.8.0",
+    "eslint-config-prettier": "~6.10.0",
     "html-webpack-plugin": "~3.2.0",
     "husky": "~4.2.3",
     "istanbul-instrumenter-loader": "~3.0.1",
@@ -41,10 +48,11 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged"
+      "pre-commit": "npm run tscheck && lint-staged"
     }
   },
   "lint-staged": {
-    "*.{js,css,md}": "prettier --write"
+    "*.{ts,js,md,json}": "prettier --write",
+    "*.{ts}": "eslint"
   }
 }
