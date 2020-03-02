@@ -1,7 +1,7 @@
 import { Observable } from 'rxjs';
 
-export interface IXHROptions {
-  body?: any;
+export interface IXHROptions<TBody = any> {
+  body?: TBody;
   headers?: Record<string, string>
 }
 
