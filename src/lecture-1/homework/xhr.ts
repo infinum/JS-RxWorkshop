@@ -2,9 +2,7 @@ import { Observable } from 'rxjs';
 
 export interface IXHROptions {
   body?: any;
-  headers?: {
-    [key: string]: string;
-  };
+  headers?: Record<string, string>
 }
 
 export interface IXHRResponse {
