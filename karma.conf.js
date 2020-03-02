@@ -18,7 +18,7 @@ module.exports = function(config) {
     singleRun: false,
     concurrency: Infinity,
     preprocessors: {
-      'src/test.ts': ['webpack'],
+      'src/test.ts': ['webpack', 'sourcemap'],
     },
     mime: {
       'text/x-typescript': ['ts'],
