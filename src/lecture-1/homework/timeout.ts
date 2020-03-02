@@ -7,6 +7,8 @@ export function timeout(timeoutMs: number): Observable<void> {
       subscriber.complete();
     }, timeoutMs);
 
-    return () => { window.clearTimeout(timeoutHandle) }
+    return (): void => {
+      window.clearTimeout(timeoutHandle);
+    };
   });
 }

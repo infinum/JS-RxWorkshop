@@ -10,7 +10,7 @@
     "test": "karma start",
     "lint": "npm run tscheck && npm run eslint",
     "tscheck": "tsc --noEmit --skipLibCheck -p .",
-    "eslint": "eslint ."
+    "eslint": "eslint . --ext .js,.ts"
   },
   "author": "Infinum JS Team",
   "license": "MIT",
@@ -20,6 +20,7 @@
     "@typescript-eslint/parser": "~2.21.0",
     "eslint": "~6.8.0",
     "eslint-config-prettier": "~6.10.0",
+    "eslint-plugin-prettier": "~3.1.2",
     "html-webpack-plugin": "~3.2.0",
     "husky": "~4.2.3",
     "istanbul-instrumenter-loader": "~3.0.1",
