@@ -1,14 +1,7 @@
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 
 export function timeout(timeoutMs: number): Observable<void> {
-  return new Observable((subscriber) => {
-    const timeoutHandle = window.setTimeout(() => {
-      subscriber.next();
-      subscriber.complete();
-    }, timeoutMs);
+  console.log(timeoutMs);
 
-    return (): void => {
-      window.clearTimeout(timeoutHandle);
-    };
-  });
+  return of(null);
 }
