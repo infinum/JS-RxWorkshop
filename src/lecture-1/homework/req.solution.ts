@@ -1,7 +1,7 @@
 import { Observable } from 'rxjs';
-import { XHROptions, XHRResponse } from './xhr';
+import { IReqOptions, IReqResponse } from './req';
 
-export function xhr(method: string, url: string, options?: XHROptions): Observable<XHRResponse> {
+export function req(method: string, url: string, options?: IReqOptions): Observable<IReqResponse> {
   return new Observable((subscriber) => {
     const request = new XMLHttpRequest();
 

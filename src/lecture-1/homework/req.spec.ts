@@ -1,7 +1,7 @@
 import 'jasmine-ajax';
-import { xhr } from './xhr';
+import { req } from './req';
 
-describe('Lecture 1 - XHR', () => {
+describe('Lecture 1 - Request', () => {
   beforeEach(() => {
     jasmine.Ajax.install();
 
@@ -22,7 +22,7 @@ describe('Lecture 1 - XHR', () => {
   });
 
   it('should make a GET request', (done: DoneFn) => {
-    xhr('GET', '/infinum/index').subscribe((response) => {
+    req('GET', '/infinum/index').subscribe((response) => {
       expect(response).toBeDefined();
       expect(response.status).toBe(200);
       expect(JSON.parse(response.response).response).toBe('incredible cool things');
@@ -34,7 +34,7 @@ describe('Lecture 1 - XHR', () => {
   });
 
   it('should make a POST request with a body', (done: DoneFn) => {
-    xhr('POST', '/infinum/index', { body: { name: 'John' } }).subscribe((response) => {
+    req('POST', '/infinum/index', { body: { name: 'John' } }).subscribe((response) => {
       expect(response).toBeDefined();
       done();
     });
@@ -45,7 +45,7 @@ describe('Lecture 1 - XHR', () => {
   });
 
   it('should set request headers', (done: DoneFn) => {
-    xhr('GET', '/infinum/index', { headers: { header: 'value' } }).subscribe((response) => {
+    req('GET', '/infinum/index', { headers: { header: 'value' } }).subscribe((response) => {
       expect(response).toBeDefined();
       done();
     });
@@ -55,7 +55,7 @@ describe('Lecture 1 - XHR', () => {
   });
 
   it('should handle errors', (done: DoneFn) => {
-    xhr('GET', '/infinum/error').subscribe(null, (error) => {
+    req('GET', '/infinum/error').subscribe(null, (error) => {
       expect(error.status).toBe(500);
       done();
     });
@@ -63,19 +63,19 @@ describe('Lecture 1 - XHR', () => {
 
   it('should handle timeouts', () => {
     const onErrorSpy = jasmine.createSpy('onError');
-    xhr('GET', '/infinum/timeout').subscribe({ error: onErrorSpy });
+    req('GET', '/infinum/timeout').subscribe({ error: onErrorSpy });
     expect(onErrorSpy).toHaveBeenCalled();
   });
 
   it('should complete after response is received', () => {
     const onCompleteSpy = jasmine.createSpy('onComplete');
-    xhr('GET', '/infinum/index').subscribe({ complete: onCompleteSpy });
+    req('GET', '/infinum/index').subscribe({ complete: onCompleteSpy });
     expect(onCompleteSpy).toHaveBeenCalled();
   });
 
   it('should be cancellable', (done: DoneFn) => {
     const onSuccessSpy = jasmine.createSpy('onSuccess');
-    const subscription = xhr('GET', '/infinum/long-request').subscribe(onSuccessSpy);
+    const subscription = req('GET', '/infinum/long-request').subscribe(onSuccessSpy);
     subscription.unsubscribe();
 
     const request = jasmine.Ajax.requests.mostRecent();
