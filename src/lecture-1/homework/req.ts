@@ -1,18 +1,15 @@
 import { Observable } from 'rxjs';
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export interface IReqOptions<TBody = any> {
+export interface IReqOptions<TBody> {
   body?: TBody;
   headers?: Record<string, string>;
 }
 
 export interface IReqResponse {
   response: string;
-  responseText: string;
   status: number;
-  statusText: string;
 }
 
-export function req(method: string, url: string, options?: IReqOptions): Observable<IReqResponse> {
+export function req<TBody = void>(method: string, url: string, options?: IReqOptions<TBody>): Observable<IReqResponse> {
   return null;
 }

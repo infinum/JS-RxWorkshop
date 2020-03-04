@@ -1,16 +1,14 @@
 import { Observable } from 'rxjs';
 import { IReqOptions, IReqResponse } from './req';
 
-export function req(method: string, url: string, options?: IReqOptions): Observable<IReqResponse> {
+export function req<TBody = void>(method: string, url: string, options?: IReqOptions<TBody>): Observable<IReqResponse> {
   return new Observable((subscriber) => {
     const request = new XMLHttpRequest();
 
     request.onload = function(): void {
       subscriber.next({
         response: request.response,
-        responseText: request.responseText,
         status: request.status,
-        statusText: request.statusText,
       });
     };
 
