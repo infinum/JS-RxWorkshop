@@ -1,4 +1,4 @@
-import { fromEvent } from './fromEvent.solution';
+import { fromEvent } from './fromEvent';
 
 fdescribe('Lecture 1 - Event handling', () => {
   let element: HTMLElement;
