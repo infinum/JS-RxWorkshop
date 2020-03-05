@@ -1,6 +1,6 @@
-import { fromEvent } from './fromEvent';
+import { fromEvent } from './from-event';
 
-describe('Lecture 1 - Event handling', () => {
+describe('Lecture 1 - Task 1 - fromEvent', () => {
   let element: HTMLElement;
 
   beforeEach(() => {

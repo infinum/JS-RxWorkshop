@@ -1,7 +1,7 @@
 import 'jasmine-ajax';
 import { req } from './req';
 
-describe('Lecture 1 - Request', () => {
+describe('Lecture 1 - Task 4 - req', () => {
   beforeEach(() => {
     jasmine.Ajax.install();
 

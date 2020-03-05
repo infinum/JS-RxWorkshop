@@ -1,13 +1,12 @@
-import { timeout } from './timeout';
 import { PartialObserver } from 'rxjs';
+import { timeout } from './timeout';
 
-describe('Lecture 1 - setTimeout', () => {
-  beforeEach(() => {
-    jasmine.clock().uninstall();
+describe('Lecture 1 - Task 2 - timeout', () => {
+  beforeAll(() => {
     jasmine.clock().install();
   });
 
-  afterEach(() => {
+  afterAll(() => {
     jasmine.clock().uninstall();
   });
 
