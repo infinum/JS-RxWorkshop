@@ -3,6 +3,7 @@
 The workshop consists of 4 lectures:
 
 - [1. Lecture - The Basics](#1-lecture---the-basics)
+  - [Slides PDF](./slides/rxjs-workshop-lecture-1.pdf)
 - [2. Lecture - Operators](#2-lecture---operators)
 - [3. Lecture - Use cases](#3-lecture---use-cases)
 
@@ -15,14 +16,14 @@ Homework tasks are placed in `src/lecture-#/homework`. Each task has `.ts` and `
 ### 1.1. Topics
 
 - What is `Rx`
-    - Observer (or Pub-Sub) design pattern
-        - [Observer vs Pub-Sub Pattern](https://hackernoon.com/observer-vs-pub-sub-pattern-50d3b27f838c)
-    - Language-specific implementations like `RxJS`, `RxSwift`, `RxJava`
+  - Observer (or Pub-Sub) design pattern
+    - [Observer vs Pub-Sub Pattern](https://hackernoon.com/observer-vs-pub-sub-pattern-50d3b27f838c)
+  - Language-specific implementations like `RxJS`, `RxSwift`, `RxJava`
 - `Observable` life-cycle
-    - Creation, emitting, disposal
+  - Creation, emitting, disposal
 - Types of `Observables`
-    - Hot/Cold
-    - Different `Subject`s
+  - Hot/Cold
+  - Different `Subject`s
 - Comparison to `Promise`s and `MobX`
 
 ### 1.2. Homework
@@ -30,8 +31,11 @@ Homework tasks are placed in `src/lecture-#/homework`. Each task has `.ts` and `
 _Note:_ For these homework tasks, do not use `fromEvent()`, `from()`, `timer()` or `interval()` functions from `RxJS`.
 
 #### Task #1 - Wrap `setTimeout` into `Observable`
+
 #### Task #2 - Wrap `setInterval` into `Observable`
+
 #### Task #3 - Wrap `XHR` or abortable `fetch` into `Observable`
+
 #### Task #4 - Wrap button clicks into `Observable`
 
 ## 2. Lecture - Operators
@@ -41,21 +45,21 @@ _Note:_ For these homework tasks, do not use `fromEvent()`, `from()`, `timer()` 
 Go over most important operators by type and show some use-cases. Explain some terminology (inner/outer `Observable`).
 
 - Combination
-    - `combineLatest`, `zip`, `concat`, `forkJoin`, `merge`, `startWith`
+  - `combineLatest`, `zip`, `concat`, `forkJoin`, `merge`, `startWith`
 - Conditional
-    - `every`, `iif`
+  - `every`, `iif`
 - Creation
-    - `new Observable`, `empty`, `from`, `fromEvent`, `throwError`, `of`, `interval`, `timer`, `range`
+  - `new Observable`, `empty`, `from`, `fromEvent`, `throwError`, `of`, `interval`, `timer`, `range`
 - Error handling
-    - `catchError`, `retry`, `retryWhen`
+  - `catchError`, `retry`, `retryWhen`
 - Multicasting
-    - `multicast`, `share`, `shareReplay`
+  - `multicast`, `share`, `shareReplay`
 - Filtering
-    - `auditTime`, `debounceTime`, `throttleTime`, `filter`, `find`, `take`, `takeUntil`, `takeWhile`, `first`, `skip`, `distinct`, `distinctUntilChanged`
+  - `auditTime`, `debounceTime`, `throttleTime`, `filter`, `find`, `take`, `takeUntil`, `takeWhile`, `first`, `skip`, `distinct`, `distinctUntilChanged`
 - Transformation
-    - `map`, `mergeMap / flatMap`, `switchMap`, `reduce`
+  - `map`, `mergeMap / flatMap`, `switchMap`, `reduce`
 - Utility
-    - `tap`, `delay`, `finalize`
+  - `tap`, `delay`, `finalize`
 
 ### 2.2. Homework
 
@@ -86,4 +90,4 @@ Take into consideration:
 - Change Detection & `async` pipe
 - Subscriptions and memory leaks
 - Common pipelines examples
-    - input$ -> debounceTime -> distinctUntilChanged -> http.get
+  - input\$ -> debounceTime -> distinctUntilChanged -> http.get
