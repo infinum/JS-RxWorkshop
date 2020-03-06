@@ -1,13 +1,18 @@
 import { PartialObserver } from 'rxjs';
 import { timeout } from './timeout';
 
-describe('Lecture 1 - Task 2 - timeout', () => {
+describe('#lecture-1 #task-1-2 timeout', () => {
   beforeAll(() => {
     jasmine.clock().install();
   });
 
   afterAll(() => {
     jasmine.clock().uninstall();
+  });
+
+  beforeEach(() => {
+    spyOn(window, 'setInterval').and.callThrough();
+    spyOn(window, 'clearInterval').and.callThrough();
   });
 
   it('should emit and complete after specified timeout', () => {
