@@ -1,5 +1,5 @@
 import { Observable } from 'rxjs';
-import { IReqOptions, IReqResponse } from './req';
+import { IReqOptions, IReqResponse } from '../../../src/lecture-1/task-4-req/req';
 
 export function req<TBody = void>(method: string, url: string, options?: IReqOptions<TBody>): Observable<IReqResponse> {
   return new Observable((subscriber) => {

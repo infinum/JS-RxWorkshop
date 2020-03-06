@@ -7,7 +7,7 @@ const path = require('path');
 module.exports = function(config) {
   config.set({
     basePath: '',
-    frameworks: ['jasmine'],
+    frameworks: ['jasmine', 'jasmine-spec-tags'],
     browsers: ['Chrome'],
     files: ['src/test.ts'],
     webpack: webpackConfig,
