@@ -11,7 +11,7 @@ describe('#lecture-1 #task-1-4 req', () => {
     });
 
     jasmine.Ajax.stubRequest('/infinum/error').andError({
-      status: 0,
+      status: 500,
     });
 
     jasmine.Ajax.stubRequest('/infinum/timeout').andTimeout();
