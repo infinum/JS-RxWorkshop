@@ -11,5 +11,34 @@ export interface IReqResponse {
 }
 
 export function req<TBody = void>(method: string, url: string, options?: IReqOptions<TBody>): Observable<IReqResponse> {
-  return null;
+  return new Observable((observer) => {
+    const xhr = new XMLHttpRequest();
+
+    xhr.open(method, url);
+
+    xhr.onload = function onload(): void {
+      if (xhr.status > +400) {
+        observer.error();
+      } else {
+        observer.next(xhr);
+        observer.complete();
+      }
+    };
+
+    xhr.onerror = function onerror(): void {
+      observer.error(xhr);
+    };
+
+    if (options?.headers) {
+      for (const header in options.headers) {
+        xhr.setRequestHeader(header, options?.headers?.header);
+      }
+    }
+
+    xhr.send(JSON.stringify(options?.body) || null);
+
+    return (): void => {
+      xhr.abort();
+    };
+  });
 }
