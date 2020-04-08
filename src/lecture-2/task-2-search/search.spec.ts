@@ -1,15 +1,41 @@
+import { of, concat, EMPTY } from 'rxjs';
+import { delay } from 'rxjs/operators';
+import { mockApi } from '../../helpers/mock-api.helper';
+import { ISearchResult } from '../interfaces/search-result.interface';
+import { ajax } from 'rxjs/ajax';
 import { searchPeople } from './search';
-import { of, interval } from 'rxjs';
-import { filter, map } from 'rxjs/operators';
-
-function mockApi(query: string, response: object): void {
-  jasmine.Ajax.stubRequest(`/?search=${query}`).andReturn({
-    status: 200,
-    responseText: JSON.stringify(response),
-  });
-}
 
 describe('#lecture-2 #task-2-2 search', () => {
+  const resultLuke: ISearchResult = {
+    count: 1,
+    results: [
+      {
+        name: 'Luke',
+        birth_year: '19BBY', // eslint-disable-line @typescript-eslint/camelcase
+      },
+    ],
+  };
+
+  const resultVader: ISearchResult = {
+    count: 1,
+    results: [
+      {
+        name: 'Darth Vader',
+        birth_year: '41BBY', // eslint-disable-line @typescript-eslint/camelcase
+      },
+    ],
+  };
+
+  const resultLukeSkywalker: ISearchResult = {
+    count: 1,
+    results: [
+      {
+        name: 'Luke Skywalker',
+        birth_year: '19BBY', // eslint-disable-line @typescript-eslint/camelcase
+      },
+    ],
+  };
+
   beforeEach(() => {
     jasmine.Ajax.install();
   });
@@ -19,67 +45,87 @@ describe('#lecture-2 #task-2-2 search', () => {
   });
 
   it('should fetch the results', (done: DoneFn) => {
-    const input$ = of('a');
+    const input$ = of('l');
 
-    mockApi('a', [{ name: 'Test' }]);
+    mockApi('https://swapi.co/api/people/?search=l', resultLuke);
 
     searchPeople(input$).subscribe((names) => {
-      expect(names).toEqual(['Test']);
+      expect(names).toEqual(resultLuke.results.map((p) => p.name));
       done();
     });
   });
 
   it('should not overfetch the results', (done: DoneFn) => {
-    const inputs = {
-      0: 'a',
-      45: 'ab',
-      100: 'abc',
-      220: 'abcd',
-    };
-    const input$ = interval(5).pipe(
-      filter((value) => value in inputs),
-      map((value) => inputs[value]),
+    const delayMs = 200;
+    // prettier-ignore
+    const input$ = concat(
+      of('L'),
+      of('Lu').pipe(delay(delayMs)),
+      of('Luk').pipe(delay(delayMs)),
+      of('Luke').pipe(delay(delayMs)),
     );
 
-    mockApi('a', [{ name: 'Test' }]);
-    mockApi('abc', [{ name: 'Test 2' }]);
-    mockApi('abcd', [{ name: 'Test 3' }]);
+    mockApi('https://swapi.co/api/people/?search=Luke', resultLuke);
+    spyOn(ajax, 'getJSON').and.callThrough();
+
+    searchPeople(input$).subscribe((results) => {
+      expect(results).toEqual(['Luke']);
+      expect(ajax.getJSON).toHaveBeenCalledTimes(1);
+      done();
+    });
+  });
+
+  it('should handle quick deletion and insertion', (done: DoneFn) => {
+    // prettier-ignore
+    const input$ = concat(
+      of('Luke'),
+      of('Luk').pipe(delay(300)),
+      of('Luke').pipe(delay(200)),
+      of('Luke Skywalker').pipe(delay(300)),
+    );
+
+    mockApi('https://swapi.co/api/people/?search=Luke', resultLuke);
+    mockApi('https://swapi.co/api/people/?search=Luke Skywalker', resultLukeSkywalker);
+    spyOn(ajax, 'getJSON').and.callThrough();
 
     let counter = 0;
-    const expected = [['Test'], ['Test 2'], ['Test 3']];
+    const expected = [['Luke'], ['Luke Skywalker']];
     searchPeople(input$).subscribe((names) => {
       expect(names).toEqual(expected[counter]);
       counter++;
       if (counter === expected.length) {
+        expect(ajax.getJSON).toHaveBeenCalledTimes(expected.length);
         done();
       }
     });
   });
 
-  it('should cache existing results', (done: DoneFn) => {
-    const inputs = {
-      0: 'a',
-      45: 'ab',
-      100: 'a',
-      210: 'ab',
-      220: 'abc',
-    };
-    const input$ = interval(5).pipe(
-      filter((value) => value in inputs),
-      map((value) => inputs[value]),
+  it('should unsubscribe from currently active api call if a new request comes in', (done: DoneFn) => {
+    // prettier-ignore
+    const input$ = concat(
+      of('Luke'),
+      of('Vader').pipe(delay(300)),
     );
 
-    mockApi('a', [{ name: 'Test' }]);
-    mockApi('abc', [{ name: 'Test 2' }]);
-
-    let counter = 0;
-    const expected = [['Test'], ['Test'], ['Test 2']];
-    searchPeople(input$).subscribe((names) => {
-      expect(names).toEqual(expected[counter]);
-      counter++;
-      if (counter === expected.length) {
-        done();
+    spyOn(ajax, 'getJSON').and.callFake((url) => {
+      switch (url) {
+        case 'https://swapi.co/api/people/?search=Luke': // simulate response delay
+          return of(resultLuke).pipe(delay(350)) as any; // eslint-disable-line @typescript-eslint/no-explicit-any
+        case 'https://swapi.co/api/people/?search=Vader':
+          return of(resultVader) as any; // eslint-disable-line @typescript-eslint/no-explicit-any
+        default:
+          return EMPTY;
       }
     });
+
+    searchPeople(input$).subscribe((names) => {
+      console.log(names);
+      expect(names).toEqual(['Darth Vader']);
+    });
+
+    setTimeout(() => {
+      expect(ajax.getJSON).toHaveBeenCalledTimes(2);
+      done();
+    }, 610);
   });
 });
