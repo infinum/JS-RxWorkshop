@@ -1,15 +1,8 @@
 import { Observable } from 'rxjs';
 import { ajax } from 'rxjs/ajax';
 import { map } from 'rxjs/operators';
-
-export interface IPerson {
-  name: string;
-  birth_year: string;
-}
-
-export class Person {
-  constructor(public name: string, public birthYear: string) {}
-}
+import { IPerson } from '../../../src/lecture-2/interfaces/person.interface';
+import { Person } from '../../../src/lecture-2/models/person.model';
 
 export function fetchPerson(id: number): Observable<Person> {
   return ajax.getJSON<IPerson>(`https://swapi.co/api/people/${id}/`).pipe(
